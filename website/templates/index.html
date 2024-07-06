@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DataFrame</title>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>OI</th>
+                <th>CHNG IN OI</th>
+                <th>VOLUME</th>
+                <th>IV</th>
+                <th>LTP</th>
+                <th>CHNG</th>
+                <th>BID QTY</th>
+                <th>BID</th>
+                <th>ASK</th>
+                <th>ASK QTY</th>
+                <th>STRIKE</th>
+                <th>BID QTY</th>
+                <th>BID</th>
+                <th>ASK</th>
+                <th>ASK QTY</th>
+                <th>CHNG</th>
+                <th>LTP</th>
+                <th>IV</th>
+                <th>VOLUME</th>
+                <th>CHNG IN OI</th>
+                <th>OI</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in df['data'] %}
+                <tr>
+                    {% for col, value in row.items() %}
+                    <td>
+                        {% if df['dtypes'][col] == 'int64' %}
+                            {{ value | int }}
+                        {% elif df['dtypes'][col] == 'float64' %}
+                            {{ value | float }}
+                        {% else %}
+                            {{ value }}
+                        {% endif %}
+                    </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
